@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from data_collection import news_collector, social_media_collector, stock_price_collector
 from data_preprocessing import text_cleaner, sentiment_analyzer, stock_data_preparer, process_sentiment_data
 from feature_engineering import feature_engineer
-from model_development import sentiment_model, stock_prediction_model
+from model_development import stock_prediction_model
 from model_evaluation import evaluate_model
 from datetime import datetime, timedelta
 from visualization import data_visualizer
@@ -62,13 +62,11 @@ def main():
 
         # Model Development
         logger.info("Developing models...")
-        news_data['sentiment'] = sentiment_analyzer.analyze_sentiment(news_data['content'])
-        sentiment_model_results = sentiment_model.train_and_evaluate(news_data)
         stock_prediction_results = stock_prediction_model.train_and_evaluate(features)
 
         # Model Evaluation
         logger.info("Evaluating models...")
-        evaluate_model.evaluate(sentiment_model_results, stock_prediction_results)
+        evaluate_model.evaluate(stock_prediction_results)
 
         # Visualization
         logger.info("Generating visualizations...")
