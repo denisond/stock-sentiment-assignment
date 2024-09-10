@@ -52,27 +52,3 @@ def train_and_evaluate(features):
         raise ValueError("No models could be trained due to insufficient data.")
     
     return results
-
-if __name__ == "__main__":
-    import pandas as pd
-    import numpy as np
-    
-    # Create sample data
-    dates = pd.date_range(start='2022-01-01', end='2023-01-01')
-    sample_data = pd.DataFrame({
-        'Returns': np.random.randn(len(dates)),
-        'Sentiment': np.random.randn(len(dates)),
-        'Volume': np.random.randint(1000000, 10000000, len(dates)),
-        'Target': np.random.randn(len(dates))
-    }, index=dates)
-    
-    features = {'SAMPLE': sample_data}
-    results = train_and_evaluate(features)
-    
-    for symbol, result in results.items():
-        print(f"\n{symbol}:")
-        print(f"MSE: {result['mse']:.4f}")
-        print(f"R2: {result['r2']:.4f}")
-        print("Top 5 important features:")
-        for feature, importance in sorted(result['feature_importance'].items(), key=lambda x: x[1], reverse=True)[:5]:
-            print(f"{feature}: {importance:.4f}")

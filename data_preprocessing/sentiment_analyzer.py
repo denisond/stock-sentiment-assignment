@@ -12,9 +12,3 @@ def analyze_sentiment(text_data):
 def get_sentiment(text):
     return TextBlob(str(text)).sentiment.polarity
 
-if __name__ == "__main__":
-    sample_text = "The company's earnings report exceeded expectations, leading to a surge in stock price."
-    print(analyze_sentiment(sample_text))
-    
-    sample_series = pd.Series(["Positive sentiment text.", "Negative sentiment text."])
-    print(analyze_sentiment(sample_series))

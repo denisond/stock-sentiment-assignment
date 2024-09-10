@@ -39,9 +39,3 @@ def clean_single_text(text):
     # Join words back into string
     return ' '.join(words)
 
-if __name__ == "__main__":
-    sample_text = "The stock market CRASHED! Investors lost $1000s. What will happen next?"
-    print(clean_text(sample_text))
-    
-    sample_series = pd.Series(["Text 1 with stopwords.", "Text 2 with more stopwords!"])
-    print(clean_text(sample_series))

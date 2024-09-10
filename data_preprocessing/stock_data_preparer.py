@@ -10,13 +10,14 @@ def prepare_stock_data(stock_data):
         data['Volatility'] = data['Returns'].rolling(window=20).std()
         
         # Calculate moving averages
-        data['MA50'] = data['Close'].rolling(window=50).mean()
-        data['MA200'] = data['Close'].rolling(window=200).mean()
+        data['MA5'] = data['Close'].rolling(window=5).mean()
+        data['MA10'] = data['Close'].rolling(window=10).mean()
+        data['MA20'] = data['Close'].rolling(window=20).mean()
         
         # Calculate relative strength index (RSI)
         delta = data['Close'].diff()
-        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+        gain = (delta.where(delta > 0, 0)).rolling(window=10).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(window=10).mean()
         rs = gain / loss
         data['RSI'] = 100 - (100 / (1 + rs))
         
@@ -27,8 +28,3 @@ def prepare_stock_data(stock_data):
     
     return stock_data
 
-if __name__ == "__main__":
-    import yfinance as yf
-    sample_data = yf.download('AAPL', start='2022-01-01', end='2023-01-01')
-    prepared_data = prepare_stock_data({'AAPL': sample_data})
-    print(prepared_data['AAPL'].head())

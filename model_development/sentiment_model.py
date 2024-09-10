@@ -31,12 +31,3 @@ def train_and_evaluate(data, text_column='content', sentiment_threshold=0.1):
         'classification_report': report
     }
 
-if __name__ == "__main__":
-    from data_collection.news_collector import collect_news
-    from data_preprocessing.sentiment_analyzer import analyze_sentiment
-    
-    news_data = collect_news()
-    news_data['sentiment'] = analyze_sentiment(news_data['content'])
-    
-    results = train_and_evaluate(news_data)
-    print(results['classification_report'])

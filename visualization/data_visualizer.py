@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import pandas as pd
+from scipy import stats
 
 def plot_stock_prediction(features, model, symbol):
     data = features[symbol]
@@ -62,18 +63,3 @@ def plot_stock_prediction(features, model, symbol):
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
-
-if __name__ == "__main__":
-    # This is a placeholder to show how the function would be used
-    from model_development.stock_prediction_model import train_and_evaluate
-    from feature_engineering.feature_engineer import engineer_features
-    import yfinance as yf
-    
-    # Get some sample data
-    stock_data = {'AAPL': yf.download('AAPL', start='2020-01-01', end='2023-01-01')}
-    sentiment_scores = pd.Series(np.random.randn(len(stock_data['AAPL'])), index=stock_data['AAPL'].index)
-    
-    features = engineer_features(sentiment_scores, stock_data)
-    model_results = train_and_evaluate(features)
-    
-    plot_stock_prediction(features, model_results['AAPL']['model'], 'AAPL')

@@ -25,25 +25,3 @@ def evaluate(sentiment_model_results, stock_prediction_results):
         plt.ylabel('Importance')
         plt.tight_layout()
         plt.show()
-
-if __name__ == "__main__":
-    # This is just a placeholder to demonstrate how the function would be used
-    sentiment_results = {
-        'classification_report': "Placeholder for classification report"
-    }
-    
-    stock_prediction_results = {
-        'SAMPLE': {
-            'mse': 0.05,
-            'r2': 0.75,
-            'feature_importance': {
-                'Returns': 0.3,
-                'Sentiment': 0.2,
-                'Volume': 0.15,
-                'MA50': 0.1,
-                'RSI': 0.25
-            }
-        }
-    }
-    
-    evaluate(sentiment_results, stock_prediction_results)
